@@ -2,6 +2,7 @@ import { useState } from "react";
 import logo from "../../assets/logo.png";
 import dp from "../../assets/dp.png";
 import navdata from "../constants/NavbarData";
+import IconSvg from "../utils/IconSvg";
 
 const profileData = {
   name: "Sadik Hasan",
@@ -37,10 +38,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full @container   bg-white shadow-black/5 shadow px-6 sm:py-4.5 py-3">
+    <div className="w-full  bg-white shadow-black/5 shadow lg:px-9 md:px-6 xs:px-3 px-2 sm:py-4.5 py-3">
       <div className="flex items-center max-w-[1800px]  mx-auto justify-between">
         {/* left side */}
-        <div className="flex lg:w-[20%] items-center gap-2">
+        <div className="flex lg:w-[20%]  items-center gap-2">
           <img src={logo} alt="logo" className="h-7" />
         </div>
 
@@ -59,30 +60,11 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right Section */}
+        {/* Right side */}
         <div className="hidden xl:flex items-center   gap-6">
           <div className="">
             <div className="flex items-center gap-2 border border-[#DBDFE2] rounded-lg px-4 py-1">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-[#464255]"
-              >
-                <path
-                  d="M13.125 13.125L16.5 16.5"
-                  stroke="#464255"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M15 8.25C15 4.52208 11.9779 1.5 8.25 1.5C4.52208 1.5 1.5 4.52208 1.5 8.25C1.5 11.9779 4.52208 15 8.25 15C11.9779 15 15 11.9779 15 8.25Z"
-                  stroke="#464255"
-                  strokeWidth="1.5"
-                />
-              </svg>
+              <IconSvg name={"search"}></IconSvg>
 
               <input
                 type="text"
@@ -108,26 +90,8 @@ const Navbar = () => {
 
         <div className="flex xl:hidden items-center gap-3">
           <button onClick={toggleSearch} className="p-2">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-[#464255]"
-            >
-              <path
-                d="M13.125 13.125L16.5 16.5"
-                stroke="#464255"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-              <path
-                d="M15 8.25C15 4.52208 11.9779 1.5 8.25 1.5C4.52208 1.5 1.5 4.52208 1.5 8.25C1.5 11.9779 4.52208 15 8.25 15C11.9779 15 15 11.9779 15 8.25Z"
-                stroke="#464255"
-                strokeWidth="1.5"
-              />
-            </svg>
+          
+             <IconSvg name={"search2"}></IconSvg>
           </button>
 
           <button onClick={toggleProfile}>
@@ -139,31 +103,13 @@ const Navbar = () => {
           </button>
 
           {/* menu icon */}
-          <button onClick={toggleMenu} className="p-2  @2xl:hidden block">
+          <button onClick={toggleMenu} className="p-2 cursor-pointer  @2xl:hidden block">
             {menuOpen ? (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#000"
-                strokeWidth="2"
-                strokeLinecap="round"
-              >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
+            
+                   <IconSvg name={"menu1"}></IconSvg>
             ) : (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 20 20"
-                fill="none"
-                stroke="#000"
-                strokeWidth="2"
-              >
-                <path d="M3 6h14M3 10h14M3 14h14" />
-              </svg>
+                  <IconSvg name={"menu2"}></IconSvg>
+         
             )}
           </button>
         </div>
@@ -177,26 +123,7 @@ const Navbar = () => {
         }`}
       >
         <div className="flex items-center gap-2 border border-[#DBDFE2] rounded-lg px-4 py-1">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="text-[#464255]"
-          >
-            <path
-              d="M13.125 13.125L16.5 16.5"
-              stroke="#464255"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M15 8.25C15 4.52208 11.9779 1.5 8.25 1.5C4.52208 1.5 1.5 4.52208 1.5 8.25C1.5 11.9779 4.52208 15 8.25 15C11.9779 15 15 11.9779 15 8.25Z"
-              stroke="#464255"
-              strokeWidth="1.5"
-            />
-          </svg>
+          <IconSvg name={"search1"}></IconSvg>
           <input
             type="text"
             placeholder="Search Anything...."
