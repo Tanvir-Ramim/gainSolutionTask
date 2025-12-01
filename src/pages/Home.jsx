@@ -1,13 +1,11 @@
 import React from 'react';
+import Navbar from '../shared/components/Navbar';
 
 const Home = () => {
     return (
-<>
-       <h1 className='text-red-600'>Vite +sdfsdfsdf React</h1>
-       <div className="text-3xl font-bold underline">
-        sdfdsfassdfdsfs
-       </div>
-</>
+    <div>
+        <Navbar></Navbar>
+    </div>
     );
 };
 
