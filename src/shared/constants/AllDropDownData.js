@@ -10,5 +10,9 @@ export  const tableSearchStatusData = [
     { id: 5, name: "Product" },
     { id: 6, name: "Sales" },
  ]
+ export  const projectSelect = [
+    { id: 2, name: "CRM Project" },
+    { id: 3, name: "HRM Project" },
+ ]
 
 

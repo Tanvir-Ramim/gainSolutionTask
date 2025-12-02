@@ -17,7 +17,7 @@ const MainButton = ({
   return (
     <button
       className={`
-        flex items-center  sm:gap-2 gap-0.5 rounded-lg  font-semibold  sm:text-base  xs:text-sm text-xs
+        flex items-center  sm:gap-2 gap-0.5 rounded-lg  font-semibold  sm:text-base  cursor-pointer text-sm 
      
         ${px} ${py} 
         transition-all duration-200 
