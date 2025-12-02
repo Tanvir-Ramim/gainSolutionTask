@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../shared/components/Navbar";
 import MainButton from "../shared/components/MainButton";
 import IconSvg from "../shared/utils/IconSvg";
+import Table from "../shared/components/Table";
 
 const addButtonIcon = <IconSvg name={"add"}></IconSvg>;
 const downloadIcon = <IconSvg name={"download"}></IconSvg>;
@@ -41,6 +42,10 @@ const Home = () => {
             </MainButton>
           </div>
         </div>
+          
+          {/* table  */}
+         <Table></Table>
+ 
       </div>
     </div>
   );

@@ -62,7 +62,7 @@ const Navbar = () => {
 
         {/* Right side */}
         <div className="hidden xl:flex items-center   gap-6">
-          <div className="">
+   
             <div className="flex items-center gap-2 border border-[#DBDFE2] rounded-lg px-4 py-1">
               <IconSvg name={"search"}></IconSvg>
 
@@ -71,7 +71,7 @@ const Navbar = () => {
                 placeholder="Search Anything...."
                 className="w-full outline-none placeholder:text-[16px] placeholder:text-[#464255]"
               />
-            </div>
+           
           </div>
 
           {/* Profile */}
