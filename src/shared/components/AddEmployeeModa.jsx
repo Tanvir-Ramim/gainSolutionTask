@@ -4,7 +4,7 @@ import {
   tableSearchDepartmentData,
 } from "../constants/AllDropDownData";
 import MainButton from "../utils/MainButton";
-
+import CustomDropdown from "./CustomDropdown";
 
 const AddEmployeeModa = ({ setIsModalOpen }) => {
   return (
@@ -47,14 +47,12 @@ const AddEmployeeModa = ({ setIsModalOpen }) => {
               <label className="block text-sm mb-1">Select Department*</label>
 
               <div className="flex max-w-[181px]  items-center gap-3">
-                <select className="flex-1 border  border-gray-300 rounded-md px-3 py-2 text-gray-700 focus:outline-none">
-                  <option hidden selected>
-                    Department
-                  </option>
-                  {tableSearchDepartmentData?.map((dept) => (
-                    <option key={dept.id}>{dept.name}</option>
-                  ))}
-                </select>
+                <div className="flex-1">
+                  <CustomDropdown
+                    placeholder="Department"
+                    data={tableSearchDepartmentData}
+                  ></CustomDropdown>
+                </div>
               </div>
             </div>
 
@@ -63,7 +61,13 @@ const AddEmployeeModa = ({ setIsModalOpen }) => {
               <label className="block text-sm  mb-1">Select Project</label>
 
               <div className="flex items-center  max-w-[181px] gap-3">
-                <select className="flex-1 w-fit border border-gray-300 rounded-md px-3 py-2 text-gray-700 focus:outline-none">
+                <div className="flex-1">
+                  <CustomDropdown
+                    placeholder="Project"
+                    data={projectSelect}
+                  ></CustomDropdown>
+                </div>
+                {/* <select className="flex-1 w-fit border border-gray-300 rounded-md px-3 py-2 text-gray-700 focus:outline-none">
                   <option hidden selected>
                     {" "}
                     Project
@@ -71,7 +75,7 @@ const AddEmployeeModa = ({ setIsModalOpen }) => {
                   {projectSelect?.map((project) => (
                     <option key={project.id}>{project.name}</option>
                   ))}
-                </select>
+                </select> */}
               </div>
             </div>
 
@@ -110,15 +114,13 @@ const AddEmployeeModa = ({ setIsModalOpen }) => {
         </div>
 
         {/* Footer Buttons */}
-        <div className="flex justify-end items-center gap-6 mt-4">
-          <button
-            onClick={() => setIsModalOpen(false)}
-            className="text-gray-600"
-          >
-            Cancel
-          </button>
+        <div
+          onClick={() => setIsModalOpen(false)}
+          className="flex justify-end items-center gap-6 mt-4"
+        >
+          <button className="text-gray-600 cursor-pointer">Cancel</button>
 
-          <MainButton className="bg-primary text-white  ">
+          <MainButton className="bg-primary cursor-pointer text-white  ">
             Add Employee
           </MainButton>
         </div>

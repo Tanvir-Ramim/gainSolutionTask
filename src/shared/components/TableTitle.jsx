@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import IconSvg from "../utils/IconSvg";
 import AddEmployeeModa from "./AddEmployeeModa";
@@ -9,9 +9,9 @@ const downloadIcon = <IconSvg name={"download"}></IconSvg>;
 const TableTitle = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div className="flex  @xl:flex-row flex-col @xl:items-center justify-between">
+    <div className="flex   @xl:flex-row flex-col @xl:items-center justify-between">
       <div className="flex items-center gap-3    w-fit">
-        <div className="md:px-4.5 px-3 border border-gray-300 md:py-4.5 py-3 bg-white   rounded-xl flex items-center justify-center">
+        <div className="md:px-4.5 px-3 border border-gray-300 md:py-4.5 py-2 bg-white   rounded-xl flex items-center justify-center">
           <IconSvg name={"user"}></IconSvg>
         </div>
 
@@ -25,7 +25,7 @@ const TableTitle = () => {
         </div>
       </div>
 
-      <div className="flex h-fit gap-4">
+      <div className="flex h-fit mt-6 gap-4">
         <MainButton
           icon={downloadIcon}
           iconPosition={"right"}
@@ -40,8 +40,8 @@ const TableTitle = () => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-white/50 ">
-          <div className="bg-white shadow-xl rounded-lg   max-w-[882px] modal-slide-down relative">
+        <div className="fixed inset-0  z-50 flex items-center justify-center backdrop-blur-sm bg-white/50 ">
+          <div className="bg-white  shadow-xl rounded-lg    max-w-[882px] modal-slide-down relative">
             <AddEmployeeModa setIsModalOpen={setIsModalOpen}></AddEmployeeModa>
           </div>
         </div>

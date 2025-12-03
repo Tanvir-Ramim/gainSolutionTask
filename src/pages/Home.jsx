@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="@container w-full">
       <Navbar></Navbar>
-      <div className="max-w-[1800px]  mt-[34px] lg:px-9 md:px-6 xs:px-3 px-2  mx-auto">
+      <div className="max-w-[1800px]  md:mt-[34px] sm:mt-8 mt-6 lg:px-9 md:px-6 xs:px-3 px-2  mx-auto">
         {/* table title */}
          <TableTitle></TableTitle>
           

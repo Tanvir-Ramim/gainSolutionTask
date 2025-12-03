@@ -77,6 +77,7 @@ const icons = {
       width="22"
       height="22"
       viewBox="0 0 22 22"
+      className="sm:w-full w-[15px] mr-1"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -102,6 +103,7 @@ const icons = {
       width="24"
       height="24"
       viewBox="0 0 24 24"
+      className="sm:w-full w-[18px] ml-1 "
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -124,6 +126,7 @@ const icons = {
     <svg
       width="38"
       height="38"
+      className="md:w-full w-[26px]"
       viewBox="0 0 51 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -271,6 +274,12 @@ const icons = {
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M14.75 0.75L0.75 14.75M0.75 0.75L14.75 14.75" stroke="#464255" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
+  ),
+  arrowUp: (
+  <svg width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.146446 0.146448C-0.0488157 0.34171 -0.0488157 0.658292 0.146446 0.853555L4.14645 4.85355C4.34171 5.04882 4.65829 5.04882 4.85355 4.85355L8.85355 0.853553C9.04882 0.658291 9.04882 0.341709 8.85355 0.146447C8.65829 -0.0488155 8.34171 -0.0488155 8.14645 0.146447L4.5 3.79289L0.853554 0.146448C0.658292 -0.0488145 0.341709 -0.0488144 0.146446 0.146448Z" fill="#464255"/>
+</svg>
+
   ),
 };
 

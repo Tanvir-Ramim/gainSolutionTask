@@ -46,12 +46,12 @@ const Navbar = () => {
         </div>
 
         {/* middle */}
-        <div className="hidden @2xl:flex items-center gap-8 text-[15px]">
+        <div className="hidden @2xl:flex items-center gap-8 ">
           {navdata?.map((item, index) => (
             <a
               key={index}
               href={item?.link}
-              className={`text-[18px] ${
+              className={`md:text-[18px] text-[17px] ${
                 item?.title === "Employee" ? "text-primary" : "text-[#5A5B5F]"
               }`}
             >
@@ -138,7 +138,7 @@ const Navbar = () => {
           menuOpen ? "max-h-[400px] mt-3" : "max-h-0"
         }`}
       >
-        <div className="flex flex-col gap-4 text-[18px] text-[#5A5B5F]">
+        <div className="flex flex-col gap-4 text-[16px] text-[#5A5B5F]">
           {navdata?.map((item, index) => (
             <a key={index} href={item?.link} className="py-2">
               {item?.title}
