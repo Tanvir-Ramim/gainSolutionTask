@@ -23,3 +23,9 @@
   .modal-slide-up {
     animation: slideUp 0.5s ease-out;
   }
+
+  .modal-shadow {
+ 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.45); /* FULL SCREEN SHADOW */
+  
+}

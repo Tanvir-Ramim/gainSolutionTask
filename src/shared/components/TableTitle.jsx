@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import MainButton from "./MainButton";
+
 import IconSvg from "../utils/IconSvg";
 import AddEmployeeModa from "./AddEmployeeModa";
 import "./ModalAndScroll.css";
+import MainButton from "../utils/MainButton";
 const addButtonIcon = <IconSvg name={"add"}></IconSvg>;
 const downloadIcon = <IconSvg name={"download"}></IconSvg>;
 const TableTitle = () => {

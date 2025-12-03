@@ -83,7 +83,7 @@ const Table = () => {
                     </span>
                   </td>
                   <td className="p-3">{item.project}</td>
-                  <td className="p-3 line-clamp-1">{item.notes}</td>
+                  <td className="p-3 line-clamp-1 ">{item.notes}</td>
                   <td className="p-3">
                     <div className="min-w-[180px] flex justify-between">
                       {statuses[i]?.status === "default" && (
