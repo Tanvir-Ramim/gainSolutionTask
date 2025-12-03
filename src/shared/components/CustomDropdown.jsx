@@ -23,7 +23,7 @@ const CustomDropdown = ({ data = [], placeholder = "Select", setState }) => {
   };
 
   return (
-    <div className="relative select-none " ref={dropdownRef}>
+    <div className="relative select-none  " ref={dropdownRef}>
       <div
         onClick={() => setOpen(!open)}
         className="bg-white border border-[#E1E1E1] rounded-lg px-4 py-2.5 text-sm text-gray-700 cursor-pointer flex items-center justify-between"

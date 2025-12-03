@@ -5,7 +5,7 @@ const MainButton = ({
           
   icon,             
   iconPosition = "left",
-  px = "sm:px-4 px-3 ",
+  px = "sm:px-4 px-2 ",
   py = "sm:py-2 py-1.5 ",
   className = "",
   ...rest
@@ -37,7 +37,7 @@ const MainButton = ({
       )}
 
 
-      <span>{children}</span>
+      <span className="">{children}</span>
 
       {icon && iconPosition === "right" && (
         <span className="flex items-center">

@@ -41,8 +41,8 @@ const CalendarPopup = ({
   };
 
   return (
-    <div className="absolute z-50 mt-2 bg-white shadow-xl rounded-xl p-4 w-[320px]">
-      {/* Header */}
+    <div className="absolute z-50 mt-2 bg-white shadow-xl rounded-xl p-4 w-[280px]">
+    
       <div className="flex justify-between items-center px-2 mb-4">
         <button
           onClick={() =>
@@ -55,7 +55,7 @@ const CalendarPopup = ({
         </button>
 
         <div className="flex items-center gap-2">
-          {/* Month Selector */}
+    
           <div className="relative">
             <button
               onClick={() => {
@@ -103,7 +103,7 @@ const CalendarPopup = ({
             )}
           </div>
 
-          {/* Year Selector */}
+         
           <div className="relative">
             <button
               onClick={() => {
@@ -163,7 +163,7 @@ const CalendarPopup = ({
         </button>
       </div>
 
-      {/* Overlay close */}
+
       {(showMonthPicker || showYearPicker) && (
         <div
           className="fixed inset-0 z-0"
@@ -232,14 +232,14 @@ const CalendarPopup = ({
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center mt-4">
-        <button onClick={onClose} className="text-[#606060] text-sm">
+      <div className="flex justify-between items-center gap-2 mt-4">
+        <button onClick={onClose} className=" border border-[#CBD5E1]  px-4 py-2 rounded-lg  w-full cursor-pointer text-sm">
           Cancel
         </button>
         <button
           onClick={handleSetDate}
-          className="rounded-lg px-4 py-2 text-white text-sm"
-          style={{ backgroundColor: "#3E50F7" }}
+          className="rounded-lg bg-primary w-full  cursor-pointer px-4 py-2 text-white text-sm"
+         
         >
           Set Date
         </button>

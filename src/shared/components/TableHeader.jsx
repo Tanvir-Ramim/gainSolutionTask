@@ -106,17 +106,6 @@ const TableHeader = () => {
             )}
           </div>
 
-          {/* <select className="bg-white border  cursor-pointer border-[#E1E1E1] rounded-lg px-4 py-2.5 text-sm text-gray-700 outline-none">
-            <option disabled selected hidden>
-              Department
-            </option>
-
-            {tableSearchDepartmentData?.map((status) => (
-              <option className="text-sm" key={status?.id}>
-                {status?.name}
-              </option>
-            ))}
-          </select> */}
           <CustomDropdown
             placeholder="Department"
             data={tableSearchDepartmentData}
@@ -124,8 +113,8 @@ const TableHeader = () => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center  ">
-          <div className="bg-white modal-shadow    rounded-lg    modal-slide-down relative">
+        <div className="fixed inset-0 flex items-center mb-32 p-2 justify-center  ">
+          <div className="bg-white modal-shadow     rounded-lg    modal-slide-down relative">
             <DateRangeModal setIsModalOpen={setIsModalOpen}></DateRangeModal>
           </div>
         </div>

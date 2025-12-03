@@ -14,10 +14,9 @@ const Table = () => {
   const [statuses, setStatuses] = useState(
     mockData.map(() => ({ status: "default", id: null }))
   );
-   // pagi
+  // pagi
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 100; 
-
+  const totalPages = 10;
 
   const getPageNumbers = () => {
     let pages = [];
@@ -28,7 +27,14 @@ const Table = () => {
       if (currentPage <= 4) {
         pages = [1, 2, 3, 4, "...", totalPages];
       } else if (currentPage >= totalPages - 3) {
-        pages = [1, "...", totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+        pages = [
+          1,
+          "...",
+          totalPages - 3,
+          totalPages - 2,
+          totalPages - 1,
+          totalPages,
+        ];
       } else {
         pages = [
           1,
@@ -129,13 +135,13 @@ const Table = () => {
                       <div className="flex items-center space-x-3">
                         <button
                           onClick={() => handleReject(i)}
-                          className="text-[#E02600] font-semibold text-[12px] hover:opacity-80 px-2 py-1.5"
+                          className="text-[#E02600] cursor-pointer font-semibold text-[12px] hover:opacity-80 px-2 py-1.5"
                         >
                           Reject
                         </button>
                         <button
                           onClick={() => handleApprove(i)}
-                          className="bg-[#089624] px-5 rounded-lg py-1.5 text-white text-[12px] hover:bg-[#06751c]"
+                          className="bg-[#089624] cursor-pointer px-5 rounded-lg py-1.5 text-white text-[12px] hover:bg-[#06751c]"
                         >
                           Approve
                         </button>
@@ -147,14 +153,14 @@ const Table = () => {
                       <div className="flex items-center space-x-2">
                         <button
                           disabled
-                          className="flex items-center border-[1.5px] border-[#089624] space-x-1 px-[10px] py-1.5 rounded-lg text-[#089624] text-[12px] bg-[#E6F4E9]"
+                          className="flex items-center border-[1.5px] border-[#089624] space-x-1 px-2.5 py-1.5 rounded-lg text-[#089624] text-[12px] bg-[#E6F4E9]"
                         >
                           <IconSvg name="rightIcon" />
                           <span>Approved</span>
                         </button>
                         <button
                           onClick={() => handleUndo(i)}
-                          className="border rounded-lg border-[#DBDFE2] py-1.5 px-2 text-[12px] hover:bg-gray-50"
+                          className="border rounded-lg cursor-pointer border-[#DBDFE2] py-1.5 px-2 text-[12px] hover:bg-gray-50"
                         >
                           Undo
                         </button>
@@ -166,14 +172,14 @@ const Table = () => {
                       <div className="flex items-center space-x-2">
                         <button
                           disabled
-                          className="flex items-center border-[1.5px] border-[#E02600] space-x-1 px-3 py-1.5 rounded-lg text-[#E02600] text-[12px] bg-[#FEF7F4]"
+                          className="flex items-center  border-[1.5px] border-[#E02600] space-x-1 px-3 py-1.5 rounded-lg text-[#E02600] text-[12px] bg-[#FEF7F4]"
                         >
                           <IconSvg name="crossIcon" />
                           <span>Rejected</span>
                         </button>
                         <button
                           onClick={() => handleUndo(i)}
-                          className="border rounded-lg border-[#DBDFE2] py-1.5 px-2 text-[12px] hover:bg-gray-50"
+                          className="border rounded-lg border-[#DBDFE2] cursor-pointer py-1.5 px-2 text-[12px] hover:bg-gray-50"
                         >
                           Undo
                         </button>
@@ -192,22 +198,21 @@ const Table = () => {
       </div>
 
       {/* ---------------- pagi ---------------- */}
-      <div className="mt-6 flex items-center space-x-3 text-[#464255] font-medium justify-end">
-      
-      <button
-        onClick={() => changePage(currentPage - 1)}
-        className="flex items-center gap-1 hover:text-black transition-colors duration-200"
-      >
-        <span className="text-lg">←</span> Previous
-      </button>
-
-      
-      {getPageNumbers().map((page, index) => (
+      <div className="mt-6 flex items-center @sm:space-x-3 space-x-2 text-[#464255] font-medium md:justify-end justify-center">
         <button
-          key={index}
-          onClick={() => changePage(page)}
-          className={`
-            w-8 h-8 flex items-center justify-center rounded-md
+          onClick={() => changePage(currentPage - 1)}
+          className="flex items-center @sm:text-base text-sm cursor-pointer gap-1 hover:text-black transition-colors duration-200"
+        >
+          <span className="text-lg @sm:block hidden">←</span> Previous
+        </button>
+
+        {getPageNumbers().map((page, index) => (
+          <button
+            key={index}
+            onClick={() => changePage(page)}
+            className={`
+             @sm:p-1
+            p-0.5 flex items-center @sm:text-base cursor-pointer text-xs justify-center rounded-md
             transition-all duration-200 ease-in-out
             ${
               page === currentPage
@@ -215,20 +220,19 @@ const Table = () => {
                 : "hover:bg-gray-200 border border-transparent"
             }
           `}
-          style={{ minWidth: "32px" }} 
-        >
-          {page}
-        </button>
-      ))}
+          >
+            {page}
+          </button>
+        ))}
 
-      {/* Next */}
-      <button
-        onClick={() => changePage(currentPage + 1)}
-        className="flex items-center gap-1 hover:text-black transition-colors duration-200"
-      >
-        Next <span className="text-lg">→</span>
-      </button>
-    </div>
+        {/* Next */}
+        <button
+          onClick={() => changePage(currentPage + 1)}
+          className="flex items-center gap-1 cursor-pointer @sm:text-base text-sm hover:text-black transition-colors duration-200"
+        >
+          Next <span className="text-lg @sm:block hidden">→</span>
+        </button>
+      </div>
     </div>
   );
 };

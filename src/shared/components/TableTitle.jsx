@@ -29,12 +29,12 @@ const TableTitle = () => {
         <MainButton
           icon={downloadIcon}
           iconPosition={"right"}
-          className=" text-black bg-white border border-gray-300"
+          className=" text-black @sm:text-base text-[13px] bg-white border border-gray-300"
         >
           Export Excel
         </MainButton>
         <div onClick={() => setIsModalOpen(true)}>
-          <MainButton icon={addButtonIcon} className="bg-primary text-white">
+          <MainButton icon={addButtonIcon} className="bg-primary @sm:text-base text-[13px] text-white">
             Add Employee
           </MainButton>
         </div>
