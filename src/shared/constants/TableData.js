@@ -68,7 +68,7 @@ export const mockData = [
     due: "05 hr",
     department: "Design",
     project: "CRM Project",
-    notes: "Working on Data Management...",
+    notes: "Working on Data Management...Working on Data Management...Working on Data Management...Working on Data Management...Working on Data Management...Working on Data Management...",
     status: "none",
   },
   {

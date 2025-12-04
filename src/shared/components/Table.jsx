@@ -255,12 +255,12 @@ const Table = () => {
         </div>
       </div>
       {/* ---------------- pagi ---------------- */}
-      <div className="mt-6 lg:mb-12 md:mb-10 sm:mb-9 mb-7 md:mr-9 flex items-center @sm:space-x-3 space-x-2 text-[#464255] font-medium md:justify-end justify-center">
+      <div className="mt-6 lg:mb-12 md:mb-10 sm:mb-9 mb-7 md:mr-9 flex items-center @lg:space-x-3 space-x-2 text-[#464255] font-medium md:justify-end justify-center">
         <button
           onClick={() => changePage(currentPage - 1)}
-          className="flex items-center @sm:text-base text-sm cursor-pointer gap-1 hover:text-black transition-colors duration-200"
+          className="flex items-center @lg:text-base text-sm cursor-pointer gap-1 hover:text-black transition-colors duration-200"
         >
-          <span className="text-lg @md:block hidden">←</span> Previous
+          <span className="text-lg @lg:block hidden">←</span> Previous
         </button>
 
         {getPageNumbers().map((page, index) => (
@@ -268,8 +268,8 @@ const Table = () => {
             key={index}
             onClick={() => changePage(page)}
             className={`
-             @sm:px-2.5 px-1 @sm:py-1 py-0.5
-            p-0.5 flex items-center @sm:text-base cursor-pointer text-xs justify-center rounded
+             @lg:px-2.5 px-1 @sm:py-1 py-0.5
+            p-0.5 flex items-center @lg:text-base cursor-pointer text-xs justify-center rounded
             transition-all duration-200 ease-in-out
             ${
               page === currentPage
@@ -285,9 +285,9 @@ const Table = () => {
         {/* Next */}
         <button
           onClick={() => changePage(currentPage + 1)}
-          className="flex items-center gap-1 cursor-pointer @sm:text-base text-sm hover:text-black transition-colors duration-200"
+          className="flex items-center gap-1 cursor-pointer @lg:text-base text-sm hover:text-black transition-colors duration-200"
         >
-          Next <span className="text-lg @md:block hidden">→</span>
+          Next <span className="text-lg @lg:block hidden">→</span>
         </button>
       </div>
     </div>
