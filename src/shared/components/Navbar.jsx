@@ -17,42 +17,40 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    if (!menuOpen) {
-      setProfileOpen(false);
-      setSearchOpen(false);
-    }
+    setProfileOpen(false);
+    setSearchOpen(false);
   };
+
   const toggleProfile = () => {
     setProfileOpen(!profileOpen);
-    if (!profileOpen) {
-      setMenuOpen(false);
-      setSearchOpen(false);
-    }
+    setMenuOpen(false);
+    setSearchOpen(false);
   };
+
   const toggleSearch = () => {
     setSearchOpen(!searchOpen);
-    if (!searchOpen) {
-      setMenuOpen(false);
-      setProfileOpen(false);
-    }
+    setMenuOpen(false);
+    setProfileOpen(false);
   };
 
   return (
-    <div className="w-full  bg-white shadow-black/5 shadow lg:px-9 md:px-6 xs:px-3 px-2 sm:py-4.5 py-3">
-      <div className="flex items-center max-w-[1800px]  mx-auto justify-between">
-        {/* left side */}
-        <div className="flex lg:w-[20%]  items-center gap-2">
+    <div className="relative w-full bg-white shadow-black/5 shadow lg:px-9 md:px-6 px-3 sm:py-4.5 py-3 z-50">
+      <div className="flex items-center max-w-[1900px] mx-auto justify-between">
+        {/* Left */}
+        <div className="flex lg:w-[20%] items-center gap-2">
           <img src={logo} alt="logo" className="h-7" />
         </div>
 
-        {/* middle */}
-        <div className="hidden @2xl:flex items-center gap-8 ">
+        {/* Middle */}
+        <div className="hidden @2xl:flex items-center gap-8">
           {navdata?.map((item, index) => (
             <a
               key={index}
               href={item?.link}
               className={`md:text-[18px] text-[17px] ${
-                item?.title === "Employee" ? "text-primary" : "text-[#5A5B5F]"
+                item?.title === "Employee"
+                  ? "text-primary"
+                  : "text-[#5A5B5F]"
               }`}
             >
               {item?.title}
@@ -60,70 +58,69 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right side */}
-        <div className="hidden xl:flex items-center   gap-6">
-   
-            <div className="flex items-center gap-2 border border-[#DBDFE2] rounded-lg px-4 py-1">
-              <IconSvg name={"search"}></IconSvg>
-
-              <input
-                type="text"
-                placeholder="Search Anything...."
-                className="w-full outline-none placeholder:text-[16px] placeholder:text-[#464255]"
-              />
-           
+        {/* Right Desktop */}
+        <div className="hidden xl:flex items-center gap-6">
+          <div className="flex items-center gap-2 border border-[#DBDFE2] rounded-lg px-4 py-1">
+            <IconSvg name={"search"} />
+            <input
+              type="text"
+              placeholder="Search Anything...."
+              className="w-full outline-none placeholder:text-[16px] placeholder:text-[#464255]"
+            />
           </div>
 
-          {/* Profile */}
-          <div className="flex justify-between  items-center gap-3">
-            <div className="whitespace-nowrap">
+          <div className="flex items-center gap-3">
+            <div className="whitespace-nowrap text-right">
               <p className="font-bold text-[16px]">{profileData?.name}</p>
-              <p className="text-[#5A5B5F] text-[14px]">{profileData?.date}</p>
+              <p className="text-[#5A5B5F] text-[14px]">
+                {profileData?.date}
+              </p>
             </div>
             <img
               src={profileData?.picture}
               alt="profile"
-              className="h-[46px] b w-[46px] rounded border-[#CDCFD2] border object-cover"
+              className="h-[46px] w-[46px] rounded border border-[#CDCFD2] object-cover"
             />
           </div>
         </div>
 
-        <div className="flex xl:hidden items-center gap-3">
-          <button onClick={toggleSearch} className="p-2">
-          
-             <IconSvg name={"search2"}></IconSvg>
+     
+        <div className="flex xl:hidden items-center  gap-4">
+          <button onClick={toggleSearch} className="pt-2 cursor-pointer">
+            <IconSvg name={"search2"} />
           </button>
 
-          <button onClick={toggleProfile}>
+          <button className="cursor-pointer" onClick={toggleProfile}>
             <img
               src={profileData.picture}
               alt="profile"
-              className="h-8 w-8 rounded-full border border-[#CDCFD2] object-cover"
+              className="h-7 w-7 rounded-full border border-[#CDCFD2] object-cover"
             />
           </button>
 
-          {/* menu icon */}
-          <button onClick={toggleMenu} className="p-2 cursor-pointer  @2xl:hidden block">
+          <button
+            onClick={toggleMenu}
+            className=" cursor-pointer pt-1 @2xl:hidden block"
+          >
             {menuOpen ? (
-            
-                   <IconSvg name={"menu1"}></IconSvg>
+              <IconSvg size={32} name={"menu1"} />
             ) : (
-                  <IconSvg name={"menu2"}></IconSvg>
-         
+              <IconSvg size={32} name={"menu2"} />
             )}
           </button>
         </div>
       </div>
 
-      {/*    ///////////////////////       all mobile                 ////////////////////////// */}
-      {/* mobile search */}
+      
       <div
-        className={`xl:hidden overflow-hidden transition-all duration-300 ${
-          searchOpen ? "max-h-[70px] mt-3" : "max-h-0"
+        className={`xl:hidden absolute left-0 top-full w-full bg-white shadow-md z-40 transition-all duration-300 ${
+          searchOpen
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-3 pointer-events-none"
         }`}
       >
-        <div className="flex items-center gap-2 border border-[#DBDFE2] rounded-lg px-4 py-1">
-          <IconSvg name={"search1"}></IconSvg>
+        <div className="flex items-center gap-2 border m-4 border-[#DBDFE2] rounded-lg px-4 py-2">
+          <IconSvg name={"search1"} />
           <input
             type="text"
             placeholder="Search Anything...."
@@ -132,36 +129,47 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* mobile menu*/}
+    
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          menuOpen ? "max-h-[400px] mt-3" : "max-h-0"
+        className={`md:hidden absolute left-0 top-full w-full bg-white shadow-lg z-50 transition-all duration-300 ${
+          menuOpen
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-3 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col gap-4 text-[16px] text-[#5A5B5F]">
+        <div className="flex flex-col gap-3 text-[16px] text-[#5A5B5F] p-4">
           {navdata?.map((item, index) => (
-            <a key={index} href={item?.link} className="py-2">
+            <a
+              key={index}
+              href={item?.link}
+              className="py-2 border-b border-b-gray-300"
+            >
               {item?.title}
             </a>
           ))}
         </div>
       </div>
 
-      {/* mobile profile */}
       <div
-        className={`xl:hidden overflow-hidden transition-all duration-300 ${
-          profileOpen ? "max-h-[200px] mt-3" : "max-h-0"
+        className={`xl:hidden absolute left-0 top-full w-full bg-white shadow-md z-40 transition-all duration-300 ${
+          profileOpen
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-3 pointer-events-none"
         }`}
       >
-        <div className="flex items-center gap-3 text-[16px]">
+        <div className="flex items-center gap-3 p-4">
           <img
             src={profileData.picture}
             alt="profile"
             className="h-12 w-12 rounded-full border border-[#CDCFD2] object-cover"
           />
           <div>
-            <p className="font-bold text-[16px]">{profileData?.name}</p>
-            <p className="text-[#5A5B5F] text-[14px]">{profileData?.date}</p>
+            <p className="font-bold text-[16px]">
+              {profileData?.name}
+            </p>
+            <p className="text-[#5A5B5F] text-[14px]">
+              {profileData?.date}
+            </p>
           </div>
         </div>
       </div>

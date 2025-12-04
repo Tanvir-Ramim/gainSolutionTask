@@ -160,7 +160,6 @@ const DateRangeModal = ({ setIsModalOpen }) => {
       <IconSvg name="calendar" />
     </div>
     
-    {/* Error message with absolute positioning */}
     {endDateError && (
       <p className="absolute left-0 -bottom-6 text-red-500 text-xs">
         {endDateError}

@@ -5,23 +5,23 @@ const navdata=[
     },
     {
         title:"Employee",
-        link:"/employee"
+        link:"/"
     },
     {
         title:"Hiring",
-        link:"/hiring"  
+        link:"/"  
     },
     {
         title:"Report", 
-        link:"/report"
+        link:"/"
     },
     {
         title:"Files",
-        link:"/files"
+        link:"/"
     },
     {
         title:"Payroll",
-        link:"/payroll"
+        link:"/"
     }
 ];
 export default navdata; 

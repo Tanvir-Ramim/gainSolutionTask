@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import TableHeader from "./TableHeader";
 import IconSvg from "../utils/IconSvg";
 import { mockData } from "../constants/TableData";
@@ -12,8 +12,15 @@ const colour = {
 
 const Table = () => {
   const [statuses, setStatuses] = useState(
-    mockData.map(() => ({ status: "default", id: null }))
+    mockData.map(() => ({ status: "default" }))
   );
+
+  const [menuIndex, setMenuIndex] = useState(null);
+  const [openUp, setOpenUp] = useState(false);
+
+  const rowRefs = useRef([]);
+  const dropdownRef = useRef(null);
+
   // pagi
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10;
@@ -56,7 +63,24 @@ const Table = () => {
     setCurrentPage(page);
   };
 
-  //  status handlers
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setMenuIndex(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  const checkSpace = (index) => {
+    const row = rowRefs.current[index];
+    if (!row) return;
+    const rowRect = row.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rowRect.bottom;
+    setOpenUp(spaceBelow < 170);
+  };
+
   const handleApprove = (index) => {
     setStatuses((prev) => {
       const newStatuses = [...prev];
@@ -82,123 +106,156 @@ const Table = () => {
   };
 
   return (
-    <div className="bg-white px-4 py-3 border border-gray-300 rounded-xl mt-6 overflow-hidden">
-      <TableHeader />
+    <div>
+      <div className="bg-white px-4 md:py-3 py-2.5 border border-gray-300 rounded-xl mt-6 overflow-hidden">
+        <TableHeader />
 
-      {/* TABLE */}
-      <div className="w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-        <table className="w-full text-left border-collapse min-w-[1100px]">
-          <thead>
-            <tr className="bg-[#F3F5F6] text-[#464255] text-[16px] font-bold">
-              <th className="p-3 rounded-l-lg">ID</th>
-              <th className="p-3">Employee Name</th>
-              <th className="p-3">Duration</th>
-              <th className="p-3">Start Time - End Time</th>
-              <th className="p-3">Due Hours</th>
-              <th className="p-3">Department</th>
-              <th className="p-3">Project</th>
-              <th className="p-3">Notes</th>
-              <th className="p-3 rounded-r-lg">Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {mockData.map((item, i) => (
-              <tr
-                key={i}
-                className="border-b text-[16px] text-[#464255] border-[#E1E1E1] hover:bg-gray-50"
-              >
-                <td className="p-3">{item.id}</td>
-                <td className="p-3">{item.name}</td>
-                <td className="p-3">{item.duration}</td>
-                <td className="p-3">
-                  {item.start} - {item.end}
-                </td>
-                <td className="p-3">{item.due}</td>
-                <td className="p-3">
-                  <span
-                    className={`px-2.5 py-1 rounded-full text-xs font-medium ${
-                      colour[item.department] || "bg-gray-100 text-gray-600"
-                    } flex items-center gap-1.5`}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-current"></span>
-                    {item.department}
-                  </span>
-                </td>
-                <td className="p-3">{item.project}</td>
-                <td className="p-3 line-clamp-1">{item.notes}</td>
-
-                <td className="p-3">
-                  <div className="min-w-[180px] flex justify-between">
-                    {/* Default */}
-                    {statuses[i]?.status === "default" && (
-                      <div className="flex items-center space-x-3">
-                        <button
-                          onClick={() => handleReject(i)}
-                          className="text-[#E02600] cursor-pointer font-semibold text-[12px] hover:opacity-80 px-2 py-1.5"
-                        >
-                          Reject
-                        </button>
-                        <button
-                          onClick={() => handleApprove(i)}
-                          className="bg-[#089624] cursor-pointer px-5 rounded-lg py-1.5 text-white text-[12px] hover:bg-[#06751c]"
-                        >
-                          Approve
-                        </button>
-                      </div>
-                    )}
-
-                    {/* Approved */}
-                    {statuses[i]?.status === "approved" && (
-                      <div className="flex items-center space-x-2">
-                        <button
-                          disabled
-                          className="flex items-center border-[1.5px] border-[#089624] space-x-1 px-2.5 py-1.5 rounded-lg text-[#089624] text-[12px] bg-[#E6F4E9]"
-                        >
-                          <IconSvg name="rightIcon" />
-                          <span>Approved</span>
-                        </button>
-                        <button
-                          onClick={() => handleUndo(i)}
-                          className="border rounded-lg cursor-pointer border-[#DBDFE2] py-1.5 px-2 text-[12px] hover:bg-gray-50"
-                        >
-                          Undo
-                        </button>
-                      </div>
-                    )}
-
-                    {/* Rejected */}
-                    {statuses[i]?.status === "rejected" && (
-                      <div className="flex items-center space-x-2">
-                        <button
-                          disabled
-                          className="flex items-center  border-[1.5px] border-[#E02600] space-x-1 px-3 py-1.5 rounded-lg text-[#E02600] text-[12px] bg-[#FEF7F4]"
-                        >
-                          <IconSvg name="crossIcon" />
-                          <span>Rejected</span>
-                        </button>
-                        <button
-                          onClick={() => handleUndo(i)}
-                          className="border rounded-lg border-[#DBDFE2] cursor-pointer py-1.5 px-2 text-[12px] hover:bg-gray-50"
-                        >
-                          Undo
-                        </button>
-                      </div>
-                    )}
-
-                    <div className="border rounded-lg py-1.5 px-1 cursor-pointer border-[#DBDFE2]">
-                      <IconSvg name="threeDot" />
-                    </div>
-                  </div>
-                </td>
+        <div className="w-full md:py-2 py-1.4 mt-1.5 overflow-x-auto customescroll">
+          <table className="w-full text-left border-collapse min-w-[1100px]">
+            <thead>
+              <tr className="bg-[#F3F5F6] text-[#464255] md:text-[16px] text-[13px]  font-bold">
+                <th className="md:p-4 p-2 rounded-l-lg">ID</th>
+                <th className="md:p-4 truncate p-2">Employee Name</th>
+                <th className="md:p-4 p-2">Duration</th>
+                <th className="md:p-4 truncate p-2">Start Time - End Time</th>
+                <th className="md:p-4 truncate p-2">Due Hours</th>
+                <th className="md:p-4 p-2">Department</th>
+                <th className="md:p-4 p-2">Project</th>
+                <th className="md:p-4 p-2">Notes</th>
+                <th className="md:p-4 p-2 rounded-r-lg">Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
 
+            <tbody>
+              {mockData.map((item, i) => (
+                <tr
+                  key={i}
+                  ref={(el) => (rowRefs.current[i] = el)}
+                  className="border-b md:text-[16px] text-[13px] text-[#464255] border-[#E1E1E1] hover:bg-gray-50 relative"
+                >
+                  <td className="md:p-4 p-2">{item.id}</td>
+                  <td className="md:p-4 truncate p-2">{item.name}</td>
+                  <td className="md:p-4 truncate p-2">{item.duration}</td>
+                  <td className="md:p-4 p-2">
+                    {item.start} - {item.end}
+                  </td>
+                  <td className="md:p-4 truncate p-2">{item.due}</td>
+
+                  <td className="md:p-4 p-2">
+                    <span
+                      className={`px-2.5 w-fit py-1 rounded-full text-xs font-medium ${
+                        colour[item.department] || "bg-gray-100 text-gray-600"
+                      } flex items-center gap-1.5`}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-current"></span>
+                      {item.department}
+                    </span>
+                  </td>
+
+                  <td className="md:p-4 truncate p-2">{item.project}</td>
+                  <td className="md:p-4 p-2 max-w-[250px]">
+                    <div className="truncate">{item.notes}</div>
+                  </td>
+
+                  <td className="md:p-4 p-2 relative w-[140px]">
+                    <div className="flex items-center gap-3.5 w-full min-w-[200px]">
+                      {" "}
+                      <div className="flex-1 min-w-0">
+                        {statuses[i]?.status === "default" && (
+                          <div className="flex items-center space-x-3">
+                            <button
+                              onClick={() => handleReject(i)}
+                              className="text-[#E02600] text-[12px] cursor-pointer font-semibold pr-2.5 py-1.5 hover:opacity-80"
+                            >
+                              Reject
+                            </button>
+                            <button
+                              onClick={() => handleApprove(i)}
+                              className="bg-[#089624] cursor-pointer text-white text-[12px] px-[21.5px] py-1.5 rounded-lg hover:bg-[#06751c]"
+                            >
+                              Approve
+                            </button>
+                          </div>
+                        )}
+                        {statuses[i]?.status === "approved" && (
+                          <div className="flex items-center space-x-2">
+                            <button
+                              disabled
+                              className="flex items-center border-[1.5px] border-[#089624] px-2.5 py-1.5 rounded-lg text-[#089624] text-[12px] bg-[#E6F4E9]"
+                            >
+                              <IconSvg name="rightIcon" />
+                              Approved
+                            </button>
+                            <button
+                              onClick={() => handleUndo(i)}
+                              className="border border-[#DBDFE2] cursor-pointer py-1.5 px-2 text-[12px] rounded-lg hover:bg-gray-50"
+                            >
+                              Undo
+                            </button>
+                          </div>
+                        )}
+                        {statuses[i]?.status === "rejected" && (
+                          <div className="flex items-center space-x-2">
+                            <button
+                              disabled
+                              className="flex items-center border-[1.5px] border-[#E02600] px-3 py-1.5 rounded-lg text-[#E02600] text-[12px] bg-[#FEF7F4]"
+                            >
+                              <IconSvg name="crossIcon" />
+                              Rejected
+                            </button>
+                            <button
+                              onClick={() => handleUndo(i)}
+                              className="border border-[#DBDFE2] cursor-pointer py-1.5 px-2 text-[12px] rounded-lg hover:bg-gray-50"
+                            >
+                              Undo
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                      <div
+                        onClick={() => {
+                          checkSpace(i);
+                          setMenuIndex(menuIndex === i ? null : i);
+                        }}
+                        className="border rounded-lg pt-2 px-1.5 cursor-pointer border-[#DBDFE2]"
+                      >
+                        <IconSvg name="threeDot" />
+                      </div>
+                      {menuIndex === i && (
+                        <div
+                          ref={dropdownRef}
+                          className={`absolute right-0 ${
+                            openUp ? "bottom-8" : "top-5"
+                          }  bg-white shadow-xl   text rounded-2xl modal-shadow z-50 2 right-9 animate-[fadeIn_0.15s_ease-out]`}
+                        >
+                          <div className="flex sm:text-[14px] text-[12px] flex-col space-y-1.5">
+                            <button className="flex border-b border-b-[#E1E1E1] items-center gap-2   pl-4.5 py-2.5 hover:bg-gray-100 ">
+                              <IconSvg name="editIcon" />
+                              Edit Info
+                            </button>
+
+                            <button className="flex border-b border-b-[#E1E1E1] items-center gap-2  pr-4.5 pl-3 py-2.5 hover:bg-gray-100 ">
+                              <IconSvg name="download" />
+                              Export Excel
+                            </button>
+
+                            <button className="flex items-center gap-2 pl-4.5 py-2.5  text-red-600 hover:bg-gray-100 rounded-lg">
+                              <IconSvg name="deleteIcon" />
+                              Delete Info
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
       {/* ---------------- pagi ---------------- */}
-      <div className="mt-6 flex items-center @sm:space-x-3 space-x-2 text-[#464255] font-medium md:justify-end justify-center">
+      <div className="mt-6 lg:mb-12 md:mb-10 sm:mb-9 mb-7 md:mr-9 flex items-center @sm:space-x-3 space-x-2 text-[#464255] font-medium md:justify-end justify-center">
         <button
           onClick={() => changePage(currentPage - 1)}
           className="flex items-center @sm:text-base text-sm cursor-pointer gap-1 hover:text-black transition-colors duration-200"
@@ -211,8 +268,8 @@ const Table = () => {
             key={index}
             onClick={() => changePage(page)}
             className={`
-             @sm:p-1
-            p-0.5 flex items-center @sm:text-base cursor-pointer text-xs justify-center rounded-md
+             @sm:px-2.5 px-1 @sm:py-1 py-0.5
+            p-0.5 flex items-center @sm:text-base cursor-pointer text-xs justify-center rounded
             transition-all duration-200 ease-in-out
             ${
               page === currentPage

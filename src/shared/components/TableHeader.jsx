@@ -36,8 +36,8 @@ const TableHeader = () => {
 
   return (
     <div className="">
-      <div className="w-full flex @6xl:flex-row flex-col @6xl:items-center justify-between py-4">
-        <h2 className="text-lg @6xl:w-[30%] font-semibold text-[#0A0A0A]">
+      <div className="w-full flex @6xl:flex-row flex-col @6xl:items-center justify-between sm:py-4 py-2.5 ">
+        <h2 className="text-lg @6xl:w-[30%] 6xl:mb-0 mb-4 font-semibold text-[#0A0A0A]">
           Employee Time Logs
         </h2>
 
@@ -113,7 +113,7 @@ const TableHeader = () => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center mb-32 p-2 justify-center  ">
+        <div className="fixed inset-0 z-50 flex items-center mb-72 p-2 justify-center  ">
           <div className="bg-white modal-shadow     rounded-lg    modal-slide-down relative">
             <DateRangeModal setIsModalOpen={setIsModalOpen}></DateRangeModal>
           </div>
