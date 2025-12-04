@@ -31,12 +31,11 @@
 }
 
 
-/* custome scoll */
 
-/* ✅ ULTRA THIN CUSTOM SCROLLBAR */
+ /* for custome scroll */
 .customescroll::-webkit-scrollbar {
-  height: 4px;   /* horizontal scrollbar thickness */
-  width: 4px;    /* vertical scrollbar thickness */
+  height: 4px;  
+  width: 4px;  
 }
 
 .customescroll::-webkit-scrollbar-track {
@@ -53,7 +52,7 @@
   background: #9e9e9e;
 }
 
-/* ✅ Firefox Support */
+
 .customescroll {
   scrollbar-width: thin;
   scrollbar-color: #bdbdbd #f1f1f1;
