@@ -9,12 +9,6 @@
 
 ---
 
-## 📌 Project Overview
-
-Pluto is a modern web application built with **React** and styled using **Tailwind CSS**. It focuses on a clean UI, smooth user experience, and responsive design.
-
----
-
 ## 🛠️ How to Run This Project
 
 Follow the steps below to run the project locally:
