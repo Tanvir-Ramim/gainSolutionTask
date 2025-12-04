@@ -11,7 +11,7 @@ const TableTitle = () => {
   return (
     <div className="flex   @xl:flex-row flex-col @xl:items-center justify-between">
       <div className="flex items-center gap-3    w-fit">
-        <div className="md:px-4.5 px-3 border border-gray-300 md:py-4.5 py-2 bg-white   rounded-xl flex items-center justify-center">
+        <div className="md:px-4 px-3 border border-gray-300 md:py-4 py-2 bg-white   rounded-xl flex items-center justify-center">
           <IconSvg name={"user"}></IconSvg>
         </div>
 
@@ -25,7 +25,7 @@ const TableTitle = () => {
         </div>
       </div>
 
-      <div className="flex h-fit mt-6 gap-4">
+      <div className="flex h-fit @xl:mt-0 mt-6 gap-4">
         <MainButton
           icon={downloadIcon}
           iconPosition={"right"}

@@ -107,7 +107,7 @@ const Table = () => {
 
   return (
     <div>
-      <div className="bg-white px-4 md:py-3 py-2.5 border border-gray-300 rounded-xl mt-6 overflow-hidden">
+      <div className="bg-white md:px-6 px-4 md:py-3 py-2.5 border border-gray-300 rounded-xl mt-6 overflow-hidden">
         <TableHeader />
 
         <div className="w-full md:py-2 py-1.4 mt-1.5 overflow-x-auto customescroll">
@@ -260,7 +260,7 @@ const Table = () => {
           onClick={() => changePage(currentPage - 1)}
           className="flex items-center @sm:text-base text-sm cursor-pointer gap-1 hover:text-black transition-colors duration-200"
         >
-          <span className="text-lg @sm:block hidden">←</span> Previous
+          <span className="text-lg @md:block hidden">←</span> Previous
         </button>
 
         {getPageNumbers().map((page, index) => (
@@ -287,7 +287,7 @@ const Table = () => {
           onClick={() => changePage(currentPage + 1)}
           className="flex items-center gap-1 cursor-pointer @sm:text-base text-sm hover:text-black transition-colors duration-200"
         >
-          Next <span className="text-lg @sm:block hidden">→</span>
+          Next <span className="text-lg @md:block hidden">→</span>
         </button>
       </div>
     </div>
